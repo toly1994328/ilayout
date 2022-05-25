@@ -102,7 +102,7 @@ class Demo extends StatelessWidget {
                   yellowBox,
                   Positioned(
                       right: 10,
-                      top: -10,
+                      top: 10,
 
                       child: greenBox)
                 ],
