@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  image: ^3.1.3
+  image: ^4.1.7
   wrapper: ^1.0.2
   dash_painter: ^1.0.2
 

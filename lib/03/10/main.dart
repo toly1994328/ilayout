@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     ByteData data = await rootBundle.load(path);
     List<int> bytes =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-    return img.decodeImage(bytes);
+    return img.decodeImage(Uint8List.fromList(bytes));
   }
 
   @override
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class NXMLayout extends StatelessWidget {
-  img.Image image;
+  final img.Image image;
 
   // 行数
   final int n;
@@ -106,7 +106,7 @@ class NXMLayout extends StatelessWidget {
     );
   }
 
-  List<String> imagePaths = [
+  final List<String> imagePaths = [
     'icon_5.jpg',
     'icon_6.jpg',
     'icon_7.jpg',
@@ -121,7 +121,9 @@ class NXMLayout extends StatelessWidget {
 
   Widget buildZone(int x, int y) {
     int index = x * n + y;
-    Color color = Color(image.getPixel(y, x));
+    image.getPixel(y, x);
+    var pixel = image.getPixel(y, x);
+    var color = Color.fromARGB(pixel.a.toInt(),pixel.r.toInt(),pixel.g.toInt(),pixel.b.toInt());
     if (color == Colors.white) {
       return const SizedBox.shrink();
     } else {
